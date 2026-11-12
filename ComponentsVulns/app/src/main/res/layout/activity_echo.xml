@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/received"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/lab_text"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/reply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="要返回给上一页的文字"
+        android:inputType="text"
+        android:text="收到了" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/send"
+        style="@style/LabButton"
+        android:text="setResult 后关闭" />
+</LinearLayout>

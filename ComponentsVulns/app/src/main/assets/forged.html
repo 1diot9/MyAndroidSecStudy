@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>练习页</title>
+</head>
+<body>
+<p>这个页面由广播里的 url 交给 WebView。下面一行来自 JavaScript 接口 LabPin.pin()。</p>
+<p id="pin">接口没有返回</p>
+<script>
+    document.getElementById("pin").textContent = "LabPin.pin() = " + LabPin.pin();
+</script>
+</body>
+</html>

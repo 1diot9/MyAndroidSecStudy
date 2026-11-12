@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:paddingBottom="32dp">
+
+        <include
+            layout="@layout/include_lab_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            style="@style/LabBody"
+            android:text="先通过不导出的 DemoNotesProvider 做增删改查，再看信息泄露、SQL 注入、目录遍历。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="基本用法" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_insert"
+            style="@style/LabButton"
+            android:text="insert 一条练习记录" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_query"
+            style="@style/LabButton"
+            android:text="query scratch 表" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_update"
+            style="@style/LabButton"
+            android:text="update 全部标题" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_delete"
+            style="@style/LabButton"
+            android:text="delete scratch 表" />
+
+        <TextView
+            android:id="@+id/basic_result"
+            style="@style/LabResult"
+            android:text="ContentResolver 的结果会显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="信息泄露" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/query_all"
+            style="@style/LabButton"
+            android:text="不传条件，查询全部笔记" />
+
+        <TextView
+            android:id="@+id/leak_result"
+            style="@style/LabResult"
+            android:text="信息泄露的结果会显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="SQL 注入" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/query_public"
+            style="@style/LabButton"
+            android:text="传入 secret=0" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/query_bypass"
+            style="@style/LabButton"
+            android:text="传入 secret=0 OR 1=1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/update_inject"
+            style="@style/LabButton"
+            android:text="用 secret=1 拼进 UPDATE" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_inject"
+            style="@style/LabButton"
+            android:text="用 secret=0 OR 1=1 拼进 DELETE" />
+
+        <TextView
+            android:id="@+id/sql_result"
+            style="@style/LabResult"
+            android:text="SQL 注入的结果会显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="目录遍历" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/read_public_file"
+            style="@style/LabButton"
+            android:text="读取 demo/readme.txt" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/read_private_file"
+            style="@style/LabButton"
+            android:text="用 ../private/pin.txt 读取旁边的文件" />
+
+        <TextView
+            android:id="@+id/file_result"
+            style="@style/LabResult"
+            android:text="目录遍历的结果会显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="对照" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/query_safe"
+            style="@style/LabButton.Outlined"
+            android:text="把 OR 1=1 交给安全 Provider 查询" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_safe"
+            style="@style/LabButton.Outlined"
+            android:text="把 OR 1=1 交给安全 Provider 删除" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/read_safe_file"
+            style="@style/LabButton.Outlined"
+            android:text="把 ../private/pin.txt 交给安全 Provider" />
+
+        <TextView
+            android:id="@+id/safe_result"
+            style="@style/LabResult"
+            android:text="对照结果会显示在这里。" />
+
+        <TextView
+            style="@style/LabBody"
+            android:layout_marginTop="12dp"
+            android:text="@string/external_call_hint" />
+    </LinearLayout>
+</ScrollView>

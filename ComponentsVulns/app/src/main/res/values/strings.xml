@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">组件漏洞演示</string>
+    <string name="external_call_hint">在 App 里点按钮时，调用方是这个 App 自己，未导出的组件也会成功。要看系统拒绝其他调用方，用 README.md 里该组件一节的 adb 命令。那些命令的调用方是 adb shell。</string>
+</resources>

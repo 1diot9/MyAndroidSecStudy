@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/lab_warning_bg"
+    android:padding="12dp"
+    android:text="练习专用：组件被故意配错，里面只有假数据。学完请卸载，不要上架，也不要安装到日常使用的手机上。"
+    android:textColor="@color/lab_warning_text"
+    android:textSize="14sp" />

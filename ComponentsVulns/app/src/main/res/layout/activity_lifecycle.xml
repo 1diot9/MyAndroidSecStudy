@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        style="@style/LabBody"
+        android:text="再打开一次会让当前页进入 onPause、onStop。返回时会看到 onRestart、onStart、onResume。" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/again"
+        style="@style/LabButton"
+        android:text="再打开一个生命周期页面" />
+
+    <TextView
+        android:id="@+id/log"
+        style="@style/LabResult" />
+</LinearLayout>

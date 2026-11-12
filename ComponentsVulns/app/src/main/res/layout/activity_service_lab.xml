@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:paddingBottom="32dp">
+
+        <include
+            layout="@layout/include_lab_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            style="@style/LabBody"
+            android:text="先看 startService 和 bindService，再看权限提升、消息伪造、Service 劫持、拒绝服务。劫持需要另装 imposter 模块。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="基本用法" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_start"
+            style="@style/LabButton"
+            android:text="startService" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_stop"
+            style="@style/LabButton"
+            android:text="stopService" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_bind"
+            style="@style/LabButton"
+            android:text="bindService 并调用 Binder" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_unbind"
+            style="@style/LabButton"
+            android:text="unbindService" />
+
+        <TextView
+            android:id="@+id/basic_result"
+            style="@style/LabResult"
+            android:text="启动式服务和绑定式服务的结果会显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="权限提升" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dump_exported"
+            style="@style/LabButton"
+            android:text="让导出的服务读出全部笔记" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_exported"
+            style="@style/LabButton"
+            android:text="让导出的服务清空笔记" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dump_safe"
+            style="@style/LabButton.Outlined"
+            android:text="启动未导出的服务" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/start_protected"
+            style="@style/LabButton.Outlined"
+            android:text="启动要求 signature 权限的服务" />
+
+        <TextView
+            android:id="@+id/privilege_result"
+            style="@style/LabResult"
+            android:text="权限提升的结果会显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="消息伪造" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/forge_upgrade"
+            style="@style/LabButton"
+            android:text="把任意 URL 交给升级服务" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/check_upgrade"
+            style="@style/LabButton.Outlined"
+            android:text="先检查 host 再决定是否启动" />
+
+        <TextView
+            android:id="@+id/forge_result"
+            style="@style/LabResult"
+            android:text="消息伪造的结果会显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="Service 劫持" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/implicit_direct"
+            style="@style/LabButton"
+            android:text="直接 startService 隐式 Intent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/resolve_first"
+            style="@style/LabButton"
+            android:text="查询 action 并启动第一个 Service" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/resolve_own"
+            style="@style/LabButton.Outlined"
+            android:text="setPackage 后再启动本应用的服务" />
+
+        <TextView
+            android:id="@+id/hijack_result"
+            style="@style/LabResult"
+            android:text="劫持的结果会显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="拒绝服务" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dos_empty"
+            style="@style/LabButton"
+            android:text="向导出服务发送空 extras" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dos_type"
+            style="@style/LabButton"
+            android:text="把 count 以字符串送进导出服务" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dos_catch"
+            style="@style/LabButton.Outlined"
+            android:text="在本页捕获同样的异常" />
+
+        <TextView
+            android:id="@+id/dos_result"
+            style="@style/LabResult"
+            android:text="拒绝服务的捕获结果会显示在这里。崩溃发生在 :dos 进程。" />
+
+        <TextView
+            style="@style/LabBody"
+            android:layout_marginTop="12dp"
+            android:text="@string/external_call_hint" />
+    </LinearLayout>
+</ScrollView>

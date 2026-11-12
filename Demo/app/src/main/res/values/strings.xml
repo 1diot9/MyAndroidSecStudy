@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Demo</string>
+    <string name="demo_title">Button 与 TextView</string>
+    <string name="status_idle">等待操作</string>
+    <string name="status_ready">JNI：%1$s</string>
+    <string name="status_clicked">文字、字号和颜色已更新</string>
+    <string name="status_long_click">长按触发，当前计数 </string>
+    <string name="counter_initial">0</string>
+    <string name="counter_value">%1$d</string>
+    <string name="styled_sample">局部样式：这里加粗，那里变色。</string>
+    <string name="long_text">这是一段很长的文字，用来演示 maxLines 和 ellipsize，超出一行后末尾会显示省略号。</string>
+    <string name="link_sample">文字也能响应点击：点这里</string>
+    <string name="btn_change_text">修改文字</string>
+    <string name="btn_count">计数 +1</string>
+    <string name="btn_toggle_hide">隐藏样式文字</string>
+    <string name="btn_toggle_show">显示样式文字</string>
+    <string name="btn_disable">禁用下方按钮</string>
+    <string name="btn_enable">启用下方按钮</string>
+    <string name="btn_long_click">点按 / 长按</string>
+    <string name="toast_click">普通点击</string>
+    <string name="toast_long_click">长按</string>
+    <string name="toast_span_click">点到了文字里的链接</string>
+</resources>

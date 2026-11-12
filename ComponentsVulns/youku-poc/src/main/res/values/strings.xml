@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">优酷推送 PoC</string>
+    <string name="hint_url">updateurl（APK 下载地址）</string>
+    <string name="hint_version">updateversion</string>
+    <string name="hint_content">updatecontent</string>
+    <string name="btn_service">startService → StartActivityService</string>
+    <string name="btn_activity">startActivity → UpdateActivity（对照）</string>
+    <string name="default_url">http://192.168.1.1:8000/poc.apk</string>
+    <string name="default_version">9.9.9-poc</string>
+    <string name="default_content">外部应用伪造的升级推送，仅供授权测试。</string>
+</resources>

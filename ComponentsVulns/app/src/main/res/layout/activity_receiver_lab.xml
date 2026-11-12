@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:paddingBottom="32dp">
+
+        <include
+            layout="@layout/include_lab_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            style="@style/LabBody"
+            android:text="先看清单注册、动态注册和有序广播，再看权限绕过、敏感信息泄露、消息伪造、拒绝服务。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="基本用法" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_static"
+            style="@style/LabButton"
+            android:text="向清单里的接收器发显式广播" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_dynamic"
+            style="@style/LabButton"
+            android:text="向本页动态注册的接收器发广播" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_ordered"
+            style="@style/LabButton"
+            android:text="发送有序广播" />
+
+        <TextView
+            android:id="@+id/basic_result"
+            style="@style/LabResult"
+            android:text="基本用法的结果会显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="权限绕过" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ping_exported"
+            style="@style/LabButton"
+            android:text="让清单里的导出接收器收到 ping" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_exported"
+            style="@style/LabButton"
+            android:text="让清单里的导出接收器清空笔记" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_safe"
+            style="@style/LabButton.Outlined"
+            android:text="让未导出的接收器清空笔记" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ping_dynamic"
+            style="@style/LabButton"
+            android:text="向动态接收器发送隐式 ping" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_dynamic"
+            style="@style/LabButton"
+            android:text="向动态接收器发送隐式 delete" />
+
+        <TextView
+            android:id="@+id/command_result"
+            style="@style/LabResult"
+            android:text="命令结果会显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="敏感信息泄露" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/leak"
+            style="@style/LabButton"
+            android:text="发送不指定包名的广播" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/leak_safe"
+            style="@style/LabButton.Outlined"
+            android:text="发送时写上 setPackage" />
+
+        <TextView
+            android:id="@+id/leak_result"
+            style="@style/LabResult"
+            android:text="本页动态注册的接收器会把收到的内容显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="消息伪造" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/forge_message"
+            style="@style/LabButton"
+            android:text="发送标题、正文和 URL" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_forged"
+            style="@style/LabButton.Outlined"
+            android:text="按保存的 URL 打开 WebView" />
+
+        <TextView
+            android:id="@+id/forged_result"
+            style="@style/LabResult"
+            android:text="伪造消息会显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="拒绝服务" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dos_empty"
+            style="@style/LabButton"
+            android:text="向导出接收器发送空 extras" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dos_type"
+            style="@style/LabButton"
+            android:text="把 count 以字符串送进导出接收器" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dos_catch"
+            style="@style/LabButton.Outlined"
+            android:text="在本页捕获同样的异常" />
+
+        <TextView
+            android:id="@+id/dos_result"
+            style="@style/LabResult"
+            android:text="拒绝服务的捕获结果会显示在这里。崩溃发生在 :dos 进程。" />
+
+        <TextView
+            style="@style/LabBody"
+            android:layout_marginTop="12dp"
+            android:text="@string/external_call_hint" />
+    </LinearLayout>
+</ScrollView>

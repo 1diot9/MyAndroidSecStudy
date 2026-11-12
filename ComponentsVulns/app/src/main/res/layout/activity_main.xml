@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:paddingBottom="32dp">
+
+        <include
+            layout="@layout/include_lab_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            style="@style/LabBody"
+            android:text="四种组件分开演示，每种组件里的漏洞类型写在 README.md。Activity 劫持和 Service 劫持需要再安装 imposter 模块。exported=&quot;true&quot; 表示其他应用可以按组件名调用。带桌面图标的首页必须导出，否则图标打不开。\n\n清空笔记之后，用最后的按钮恢复演示数据。" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_activity"
+            style="@style/LabButton"
+            android:text="1. Activity：跳过密码，以及转发 Intent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_service"
+            style="@style/LabButton"
+            android:text="2. Service：按 command 读或删笔记" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_receiver"
+            style="@style/LabButton"
+            android:text="3. Receiver：执行命令，以及广播带出私密笔记" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_provider"
+            style="@style/LabButton"
+            android:text="4. Provider：拼接 SQL，以及按文件名读文件" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/reset"
+            style="@style/LabButton.Outlined"
+            android:text="恢复演示数据" />
+    </LinearLayout>
+</ScrollView>

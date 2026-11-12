@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        style="@style/LabBody"
+        android:text="这是正常路径。练习密码是 123456，写在这里是为了让你能走通这一步。\n\n真正的问题不在密码对不对，而在私密页自己被导出了，可以不经过这一页。" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="练习密码 123456"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:minHeight="48dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/open"
+        style="@style/LabButton"
+        android:text="进入笔记" />
+</LinearLayout>

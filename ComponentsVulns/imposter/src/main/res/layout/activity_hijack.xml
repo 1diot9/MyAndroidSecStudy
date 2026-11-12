@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFEBEE"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="仿冒页面"
+        android:textColor="#B71C1C"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="包名是 com.example.componentsvulns.imposter。\n如果你是从「组件漏洞演示」的任务栈里看到本页，说明本页的 taskAffinity 和 allowTaskReparenting 已经把它移进了目标应用的任务栈。\n\n本页不收集密码，也不发送网络请求。"
+        android:textColor="#B71C1C"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/move_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="把本页移到后台" />
+</LinearLayout>

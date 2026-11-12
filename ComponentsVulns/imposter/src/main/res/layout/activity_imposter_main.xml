@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="这是练习用仿冒端，包名 com.example.componentsvulns.imposter。它不是「组件漏洞演示」。\n\n劫持页的 taskAffinity 是 com.example.componentsvulns。升级服务监听的 action 与目标应用相同，intent-filter 的 priority 是 100。"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/open_hijack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="打开劫持页" />
+
+    <TextView
+        android:id="@+id/upgrade_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="15sp" />
+</LinearLayout>

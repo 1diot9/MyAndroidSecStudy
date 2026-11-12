@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  android:exported="true"  ：其他应用可以按组件名调用。
+  android:exported="false" ：其他应用调用时系统拒绝。本应用调用自己的组件仍然允许。
+
+  带桌面图标的 MainActivity 必须导出，否则桌面点不开。
+  漏洞按组件和类型写在 README.md。劫持实验需要同时安装 :imposter。
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <permission
+        android:name="com.example.componentsvulns.permission.USE_PROTECTED_SERVICE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.componentsvulns.permission.USE_PROTECTED_SERVICE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 让本应用能在 Android 11 及以后看到仿冒端注册的同一 action。 -->
+    <queries>
+        <package android:name="com.example.componentsvulns.imposter" />
+        <intent>
+            <action android:name="com.example.componentsvulns.action.APP_UPGRADE" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".App"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ComponentsVulns"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.ActivityLabActivity"
+            android:exported="false"
+            android:label="页面 Activity" />
+        <!-- 浏览器 Deep Link：VIEW + BROWSABLE，data 限定 scheme、host、path。 -->
+        <activity
+            android:name=".activity.DeepLinkActivity"
+            android:exported="true"
+            android:label="Deep Link">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="componentsvulns"
+                    android:host="lab"
+                    android:pathPrefix="/open" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.EchoActivity"
+            android:exported="false"
+            android:label="回显页面"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="com.example.componentsvulns.action.DEMO_ECHO" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.LifecycleDemoActivity"
+            android:exported="false"
+            android:label="生命周期" />
+        <activity
+            android:name=".activity.StandardLaunchActivity"
+            android:exported="false"
+            android:launchMode="standard" />
+        <activity
+            android:name=".activity.SingleTopLaunchActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.SingleTaskLaunchActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.SingleInstanceLaunchActivity"
+            android:exported="false"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="false"
+            android:label="先输入密码"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- 越权绕过：显式类名即可打开，密码比较在 LoginActivity。 -->
+        <activity
+            android:name=".activity.SecretNoteActivity"
+            android:exported="true"
+            android:label="私密笔记" />
+
+        <!-- 越权绕过：按 action 匹配。targetSdk>=31 时必须写 exported。 -->
+        <activity
+            android:name=".activity.ImplicitSecretActivity"
+            android:exported="true"
+            android:label="隐式打开的私密页">
+            <intent-filter>
+                <action android:name="com.example.componentsvulns.action.OPEN_SECRET" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.SafeSecretActivity"
+            android:exported="false"
+            android:label="未导出的页面" />
+
+        <!-- Activity 劫持：singleTask，且没有把 taskAffinity 收成空字符串。 -->
+        <activity
+            android:name=".activity.HijackableActivity"
+            android:exported="false"
+            android:label="可被插入的页面"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name=".activity.SafeTaskActivity"
+            android:exported="false"
+            android:label="独立任务栈的页面"
+            android:taskAffinity="" />
+
+        <!-- 拒绝服务。崩溃发生在 :dos 进程。 -->
+        <activity
+            android:name=".activity.DosActivity"
+            android:exported="true"
+            android:label="拒绝服务页面"
+            android:process=":dos"
+            tools:ignore="ExportedActivity" />
+
+        <activity
+            android:name=".provider.ProviderLabActivity"
+            android:exported="false"
+            android:label="数据 Provider" />
+
+        <provider
+            android:name=".provider.DemoNotesProvider"
+            android:authorities="com.example.componentsvulns.demonotes"
+            android:exported="false" />
+
+        <provider
+            android:name=".provider.VulnerableNotesProvider"
+            android:authorities="com.example.componentsvulns.vulnnotes"
+            android:exported="true"
+            tools:ignore="ExportedContentProvider" />
+
+        <provider
+            android:name=".provider.SafeNotesProvider"
+            android:authorities="com.example.componentsvulns.safenotes"
+            android:exported="false" />
+
+        <activity
+            android:name=".service.ServiceLabActivity"
+            android:exported="false"
+            android:label="服务 Service" />
+
+        <service
+            android:name=".service.DemoStartedService"
+            android:exported="false" />
+        <service
+            android:name=".service.DemoBoundService"
+            android:exported="false" />
+
+        <!-- 权限提升：导出且没有 permission，按 command 读或删笔记。 -->
+        <service
+            android:name=".service.VulnerableExportService"
+            android:exported="true"
+            tools:ignore="ExportedService" />
+
+        <service
+            android:name=".service.SafeExportService"
+            android:exported="false" />
+
+        <!-- 消息伪造，同时是 Service 劫持里本应用注册的那个 action。 -->
+        <service
+            android:name=".service.UpgradeService"
+            android:exported="true"
+            tools:ignore="ExportedService">
+            <intent-filter android:priority="0">
+                <action android:name="com.example.componentsvulns.action.APP_UPGRADE" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.SignatureProtectedService"
+            android:exported="true"
+            android:permission="com.example.componentsvulns.permission.USE_PROTECTED_SERVICE" />
+
+        <service
+            android:name=".service.DosService"
+            android:exported="true"
+            android:process=":dos"
+            tools:ignore="ExportedService" />
+
+        <activity
+            android:name=".receiver.ReceiverLabActivity"
+            android:exported="false"
+            android:label="广播 Receiver" />
+
+        <receiver
+            android:name=".receiver.DemoStaticReceiver"
+            android:exported="false" />
+
+        <activity
+            android:name=".receiver.ForgedWebActivity"
+            android:exported="false"
+            android:label="伪造消息" />
+
+        <!-- 权限绕过：清单里的导出接收器。 -->
+        <receiver
+            android:name=".receiver.VulnerableCommandReceiver"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.example.componentsvulns.action.NOTE_COMMAND" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.SafeCommandReceiver"
+            android:exported="false" />
+
+        <!-- 消息伪造。 -->
+        <receiver
+            android:name=".receiver.ForgedMessageReceiver"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.example.componentsvulns.action.FORGED_MESSAGE" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.DosReceiver"
+            android:exported="true"
+            android:process=":dos"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.example.componentsvulns.action.DOS" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

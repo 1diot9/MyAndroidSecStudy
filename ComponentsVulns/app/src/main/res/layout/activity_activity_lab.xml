@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:paddingBottom="32dp">
+
+        <include
+            layout="@layout/include_lab_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            style="@style/LabBody"
+            android:text="先看基本用法，再看越权绕过、Activity 劫持、拒绝服务。劫持需要另装 imposter 模块。说明在 README 的 Activity 一章。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="基本用法" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_explicit"
+            style="@style/LabButton"
+            android:text="显式 Intent：写入字符串并接收返回值" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_implicit"
+            style="@style/LabButton"
+            android:text="隐式 Intent：按 action 打开同一页" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_lifecycle"
+            style="@style/LabButton"
+            android:text="查看生命周期回调" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_standard"
+            style="@style/LabButton"
+            android:text="launchMode：standard" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_single_top"
+            style="@style/LabButton"
+            android:text="launchMode：singleTop" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_single_task"
+            style="@style/LabButton"
+            android:text="launchMode：singleTask" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basic_single_instance"
+            style="@style/LabButton"
+            android:text="launchMode：singleInstance" />
+
+        <TextView
+            android:id="@+id/basic_result"
+            style="@style/LabResult"
+            android:text="返回值会显示在这里。" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="越权绕过" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_login"
+            style="@style/LabButton"
+            android:text="正常路径：先输入密码" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_direct"
+            style="@style/LabButton"
+            android:text="用类名直接打开私密页" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_implicit"
+            style="@style/LabButton"
+            android:text="只用 action 打开私密页" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_redirect"
+            style="@style/LabButton"
+            android:text="把未导出页面放进 forward" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_safe"
+            style="@style/LabButton.Outlined"
+            android:text="打开未导出的页面" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="Activity 劫持" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_hijackable"
+            style="@style/LabButton"
+            android:text="打开 singleTask 且未固定 affinity 的页面" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_safe_task"
+            style="@style/LabButton.Outlined"
+            android:text="打开 taskAffinity 为空的页面" />
+
+        <TextView
+            style="@style/LabSection"
+            android:text="拒绝服务" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dos_empty"
+            style="@style/LabButton"
+            android:text="向导出页面发送空 extras" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dos_type"
+            style="@style/LabButton"
+            android:text="把 count 以字符串送进导出页面" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dos_catch"
+            style="@style/LabButton.Outlined"
+            android:text="在本页捕获同样的异常" />
+
+        <TextView
+            android:id="@+id/dos_result"
+            style="@style/LabResult"
+            android:text="拒绝服务的捕获结果会显示在这里。崩溃发生在 :dos 进程。" />
+
+        <TextView
+            style="@style/LabBody"
+            android:layout_marginTop="12dp"
+            android:text="@string/external_call_hint" />
+    </LinearLayout>
+</ScrollView>

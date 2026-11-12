@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ScrollView：内容比屏幕高时可以上下滑动。
+    fillViewport=true：子布局高度不足一屏时也会撑满屏幕，避免底部留白。
+    tools 命名空间只给布局编辑器预览用，不会打进正式包。
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
+
+    <!--
+        垂直 LinearLayout 按从上到下的顺序排控件。
+        match_parent：宽跟父布局一样。
+        wrap_content：高由内容决定。
+        padding：内边距，文字和按钮不会贴着屏幕边缘。
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!--
+            TextView 只负责显示文字。
+            android:id 生成 R.id.titleText，ViewBinding 里对应 binding.titleText。
+            @string/... 把文案放到 strings.xml，方便改字和做多语言。
+            textSize 用 sp，会跟随系统字体大小；布局尺寸用 dp。
+            textStyle=bold 是整段加粗，局部加粗要在代码里用 Spannable。
+        -->
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/demo_title"
+            android:textColor="@color/purple_700"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <!-- layout_marginTop：和上一个控件拉开距离。这段文字会在代码里被 setText 改掉。 -->
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/status_idle"
+            android:textSize="16sp" />
+
+        <!-- gravity=center：文字在 TextView 自己的区域内水平居中。控件本身仍占满整行。 -->
+        <TextView
+            android:id="@+id/counterText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/counter_initial"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <!--
+            这里不写 android:text，文字由 MainActivity.applyStyledText() 设置。
+            lineSpacingExtra：行与行之间额外增加的间距。
+        -->
+        <TextView
+            android:id="@+id/styledText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:lineSpacingExtra="4dp"
+            android:textSize="15sp" />
+
+        <!--
+            maxLines=1：最多显示一行。
+            ellipsize=end：超出部分在末尾变成省略号。
+            颜色可以直接写 #AARRGGBB 或 #RRGGBB，也可以引用 @color。
+        -->
+        <TextView
+            android:id="@+id/ellipsisText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/long_text"
+            android:textColor="#666666" />
+
+        <!-- 颜色在 XML 里设好，可点击范围在代码里用 ClickableSpan 标出。 -->
+        <TextView
+            android:id="@+id/linkText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/purple_500"
+            android:textSize="15sp" />
+
+        <!--
+            MaterialButton 是 Material 库里的按钮，默认是实心样式。
+            它继承自 Button，所以 setOnClickListener、setText、setEnabled 用法相同。
+            不写 style 时使用主题里的默认按钮样式。
+        -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/changeTextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/btn_change_text" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/countButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/btn_count" />
+
+        <!-- OutlinedButton：描边按钮，适合次要操作。 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/toggleButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/btn_toggle_hide" />
+
+        <!-- TextButton：没有背景和描边，看起来像一段可点的文字。 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/disableButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/btn_disable" />
+
+        <!--
+            框架自带的 Button。点击和长按都在代码里注册。
+            enabled 默认是 true；设成 false 后按钮变灰，点击和长按都不会触发。
+        -->
+        <Button
+            android:id="@+id/longClickButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/btn_long_click" />
+
+    </LinearLayout>
+</ScrollView>
